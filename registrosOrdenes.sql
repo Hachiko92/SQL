@@ -18,25 +18,26 @@ GO
 -- Create date: <Create Date, ,>
 -- Description:	<Description, ,>
 -- =============================================
-CREATE FUNCTION Conseguir_Telefono
+CREATE FUNCTION registrosOrdenes  
 (
 	-- Add the parameters for the function here
 	@EmployeeId int
 )
-RETURNS nvarchar(15)
+RETURNS int
 AS
 BEGIN
 	-- Declare the return variable here
-	DECLARE @telefono nvarchar(15)
+	DECLARE @nRegistros int
 
 	-- Add the T-SQL statements to compute the return value here
-	SELECT @telefono = HomePhone
-	FROM Employees
-	WHERE EmployeeID = @EmployeeId
+	SELECT @nRegistros = COUNT(*)
+	FROM Orders
+	WHERE EmployeeID = @EmployeeID
 
 	-- Return the result of the function
-	RETURN @telefono
+	RETURN @nRegistros
 
 END
 GO
 
+-- dado un EmployeeId return devolver numero de registro que tiene orders 
